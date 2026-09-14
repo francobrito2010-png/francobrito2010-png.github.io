@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franco® — Portafolio</title>
+<meta name="description" content="Franco — diseño y desarrollo de experiencias digitales: webs, apps, diseño, 3D y más.">
+<meta property="og:title" content="Franco® — Portafolio">
+<meta property="og:description" content="Diseño y desarrollo de experiencias digitales: webs, apps, diseño, 3D y más.">
+<meta property="og:type" content="website">
+
+<style>
+/* ============================================================
+   ESTILO — inspirado en Awwwards: claro, editorial, pro.
+   Cambia el acento en --acento.  Tiene modo claro y oscuro.
+   ============================================================ */
+:root{
+  --bg:#ffffff;
+  --bg-2:#f4f4f6;
+  --card:#ffffff;
+  --text:#0b0b0d;
+  --muted:#71717a;
+  --line:#e6e6ea;
+  --acento:#4b3bff;
+  --radio:16px;
+  --sombra:0 20px 60px rgba(10,10,20,.10);
+  --max:1180px;
+}
+:root[data-tema="oscuro"]{
+  --bg:#0b0b0d;
+  --bg-2:#131318;
+  --card:#131318;
+  --text:#f4f4f6;
+  --muted:#9a9aa4;
+  --line:#26262d;
+  --sombra:0 20px 60px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter','Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .3s,color .3s;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.contenedor{max-width:var(--max);margin:0 auto;padding:0 22px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* ===================== NAV ===================== */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:flex-start}
+.logo sup{font-size:9px;font-weight:700;margin-left:1px;margin-top:3px;color:var(--acento)}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:.15s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.oculto-movil{display:none}
+@media(min-width:640px){.nav-links a.oculto-movil{display:inline}}
+.toggle-tema{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:var(--bg-2);color:var(--text);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s;
+}
+.toggle-tema:hover{border-color:var(--acento)}
+.toggle-tema svg{width:17px;height:17px;fill:currentColor}
+
+/* ===================== INTRO ===================== */
+.intro{padding:70px 0 46px}
+.intro .eyebrow{margin-bottom:18px}
+.intro h1{
+  font-size:clamp(38px,9vw,76px);line-height:1.02;font-weight:800;
+  letter-spacing:-.03em;margin-bottom:22px;
+}
+.intro h1 .dot{color:var(--acento)}
+.intro .lede{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:620px;margin-bottom:26px}
+.acciones{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;
+  padding:12px 20px;border-radius:999px;border:1px solid var(--line);
+  background:var(--bg-2);transition:.16s;cursor:pointer;
+}
+.btn:hover{border-color:var(--text);transform:translateY(-1px)}
+.btn.primario{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn.primario:hover{opacity:.88}
+.btn svg{width:16px;height:16px;fill:currentColor}
+.disp{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-left:2px}
+.disp .p{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:lat 1.8s infinite}
+@keyframes lat{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+
+/* ===================== BARRA DE FILTROS ===================== */
+.barra{
+  position:sticky;top:64px;z-index:30;background:var(--bg);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.barra-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+.filtros{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1}
+.filtros::-webkit-scrollbar{display:none}
+.chip{
+  white-space:nowrap;background:transparent;border:none;color:var(--muted);
+  padding:8px 13px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  transition:.15s;flex-shrink:0;
+}
+.chip:hover{color:var(--text)}
+.chip.activo{background:var(--text);color:var(--bg)}
+.buscar{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.buscar svg{width:17px;height:17px;fill:var(--muted)}
+.buscar input{
+  background:none;border:none;outline:none;color:var(--text);font-size:14px;
+  width:120px;transition:width .2s;
+}
+.buscar input:focus{width:170px}
+.buscar input::placeholder{color:var(--muted)}
+
+/* ===================== GRID DE TRABAJOS ===================== */
+.total{padding:26px 0 8px;font-size:13px;color:var(--muted)}
+.grid{
+  padding:8px 0 70px;display:grid;grid-template-columns:1fr;gap:30px 26px;
+}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+
+.card{opacity:0;transform:translateY(16px);animation:entra .55s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes entra{to{opacity:1;transform:none}}
+.card-media{
+  position:relative;display:block;border-radius:var(--radio);overflow:hidden;
+  aspect-ratio:16/11;background:var(--bg-2);border:1px solid var(--line);
+}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-media img{transform:scale(1.045)}
+.card-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:52px;background:
+    radial-gradient(120% 120% at 100% 0%,color-mix(in srgb,var(--acento) 16%,transparent),transparent 60%),
+    var(--bg-2);}
+.card-index{position:absolute;top:13px;left:14px;font-size:12px;font-weight:800;
+  letter-spacing:.06em;padding:5px 10px;border-radius:999px;
+  background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(6px);
+  border:1px solid var(--line);color:var(--text)}
+.card-cat{position:absolute;top:13px;right:14px;font-size:11px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+  background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(6px);
+  border:1px solid var(--line)}
+.card-hint{
+  position:absolute;left:0;right:0;bottom:0;padding:16px;display:flex;justify-content:flex-end;
+  background:linear-gradient(0deg,rgba(0,0,0,.45),transparent);
+  opacity:0;transition:.25s;
+}
+.card-hint span{background:#fff;color:#0b0b0d;font-size:13px;font-weight:700;
+  padding:8px 14px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.card:hover .card-hint{opacity:1}
+.card-info{padding:16px 4px 0}
+.card-author{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-bottom:9px}
+.mini-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--acento),#9c8bff);
+  color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mini-av img{width:100%;height:100%;object-fit:cover}
+.card-info h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px}
+.card-info p{font-size:14px;color:var(--muted);margin-bottom:11px}
+.card-foot{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.card-foot .sep{opacity:.5}
+
+/* Estado vacío */
+.vacio{grid-column:1/-1;text-align:center;color:var(--muted);padding:70px 20px;
+  border:1px dashed var(--line);border-radius:var(--radio)}
+.vacio .big{font-size:42px;margin-bottom:12px}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(5,5,9,.94);
+  display:none;align-items:center;justify-content:center;padding:20px}
+.lightbox.abierto{display:flex}
+.lightbox img{max-width:100%;max-height:90vh;border-radius:12px}
+.cerrar{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;
+  background:#1a1a22;border:1px solid #33333d;color:#fff;font-size:24px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+
+footer{border-top:1px solid var(--line);padding:40px 0}
+.foot-in{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.foot-in .eyebrow{margin:0}
+.foot-links{display:flex;gap:18px}
+.foot-links a{font-size:14px;color:var(--muted);transition:.15s}
+.foot-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="contenedor nav-in">
+    <a href="#top" class="logo" id="logoNav">Franco<sup>®</sup></a>
+    <div class="nav-links">
+      <a href="#trabajo" class="oculto-movil">Trabajo</a>
+      <a href="#" id="navContacto" class="oculto-movil">Contacto</a>
+      <button class="toggle-tema" id="toggleTema" aria-label="Cambiar tema"></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== INTRO ===================== -->
+<header class="intro contenedor" id="top">
+  <div class="eyebrow" id="eyebrow">Portafolio · Creador digital</div>
+  <h1 id="tituloIntro">Franco<span class="dot">.</span></h1>
+  <p class="lede" id="lede">Diseño y desarrollo experiencias digitales: webs, apps, diseño gráfico, animación y 3D. Aquí una muestra de lo que puedo crear para ti.</p>
+  <div class="acciones" id="acciones"></div>
+</header>
+
+<!-- ===================== FILTROS ===================== -->
+<div class="barra" id="trabajo">
+  <div class="contenedor barra-in">
+    <div class="filtros" id="filtros"></div>
+    <label class="buscar">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 119.5 5a4.5 4.5 0 010 9z"/></svg>
+      <input id="buscar" type="text" placeholder="Buscar…">
+    </label>
+  </div>
+</div>
+
+<div class="contenedor total" id="total"></div>
+<main class="contenedor grid" id="grid"></main>
+
+<div class="lightbox" id="lightbox">
+  <button class="cerrar" onclick="cerrarLightbox()">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<footer>
+  <div class="contenedor foot-in">
+    <div class="eyebrow" id="footMarca">© Franco</div>
+    <div class="foot-links" id="footLinks"></div>
+  </div>
+</footer>
+
+<script>
+/* ==================================================================
+   ⚙️  1) TU INFORMACIÓN  —  edita solo este bloque
+   ================================================================== */
+const MARCA = {
+  nombre: "Franco",
+  iniciales: "F",                        // para el avatar de las tarjetas
+  foto: "",                              // "avatar.jpg" si tienes foto (súbela a esta carpeta)
+  eyebrow: "Portafolio · Creador digital",
+  lede: "Diseño y desarrollo experiencias digitales: webs, apps, diseño gráfico, animación y 3D. Aquí una muestra de lo que puedo crear para ti.",
+  redes: {
+    whatsapp: "https://wa.me/34600000000",     // tu número (internacional, sin +)
+    instagram: "https://instagram.com/tu_usuario",
+    tiktok: "https://tiktok.com/@tu_usuario",
+    email: "mailto:tucorreo@gmail.com"
+  }
+};
+
+/* ==================================================================
+   ⚙️  2) CATEGORÍAS  —  el orden aquí es el orden de los filtros
+   ================================================================== */
+const CATEGORIAS = ["Webs", "Apps", "Menús", "Diseño", "Imágenes", "Animación", "3D"];
+
+/* ==================================================================
+   ⚙️  3) TUS TRABAJOS  —  para AÑADIR uno, copia un bloque { ... }.
+        Se numeran y ordenan solos. Para quitar uno, borra su bloque.
+
+     titulo       nombre del proyecto
+     categoria    UNA de las de arriba (escrita igual)
+     descripcion  frase corta
+     anio         año (texto), ej. "2026"
+     emoji        se muestra si no hay imagen
+     imagen       "" · "foto.jpg" (en esta carpeta) · o un link https
+     tipo         "link" (abre web/demo) · "imagen" (abre en grande)
+     url          a dónde lleva (si tipo:"link")
+     boton        texto del botón (ej "Ver demo")
+   ================================================================== */
+const PROYECTOS = [
+
+  {
+    titulo: "B'Live Lounge Bar",
+    categoria: "Webs",
+    descripcion: "Web premium para un lounge bar de cocktails de autor y shisha. Diseño oscuro e inmersivo con vídeo, carta digital con QR y reservas por WhatsApp. Le monté un panel propio para que el cliente edite textos, fotos y precios sin tocar código — con su dominio y candado de seguridad (HTTPS).",
+    anio: "2026",
+    emoji: "🍸",
+    imagen: "img/blive.jpg",
+    tipo: "link",
+    url: "https://bliveloungebar.com",
+    boton: "Visitar sitio"
+  },
+
+  {
+    titulo: "AquaPura — Filtros de agua",
+    categoria: "Webs",
+    descripcion: "Landing de venta de filtros y ósmosis inversa para casa y negocio. Con comparativa del agua antes/después, fichas de producto al tocar, la sección «¿qué hay dentro de un filtro?», y pagos, envíos y garantía. Pedidos directos por WhatsApp.",
+    anio: "2026",
+    emoji: "💧",
+    imagen: "img/aquapura.jpg",
+    tipo: "link",
+    url: "https://francobrito2010-png.github.io/aquapura-filtros/",
+    boton: "Visitar sitio"
+  }
+
+];
+
+/* ==================================================================
+   ⬇️  Motor. No necesitas tocar nada de aquí para abajo.
+   ================================================================== */
+const ICONOS={
+  whatsapp:'<svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.51 5.26l-.999 3.648 3.978-1.607z"/></svg>',
+  instagram:'<svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.96 3.9 2.42 7.15 2.27 8.42 2.21 8.8 2.2 12 2.2zm0 3.68a6.12 6.12 0 100 12.24 6.12 6.12 0 000-12.24zm0 10.1a3.98 3.98 0 110-7.96 3.98 3.98 0 010 7.96zm6.36-10.34a1.43 1.43 0 10-2.86 0 1.43 1.43 0 002.86 0z"/></svg>',
+  tiktok:'<svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.3 0 .59.04.87.12V9.4a6.33 6.33 0 00-.87-.06 6.34 6.34 0 106.34 6.34V8.76a8.16 8.16 0 004.77 1.53v-3.4a4.85 4.85 0 01-1-.2z"/></svg>',
+  email:'<svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>'
+};
+const NOMBRES_RED={whatsapp:"WhatsApp",instagram:"Instagram",tiktok:"TikTok",email:"Email"};
+const SOL='<svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v3m0 16v3M4.2 4.2l2.1 2.1m11.4 11.4l2.1 2.1M1 12h3m16 0h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const LUNA='<svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+
+/* Tema (recuerda la preferencia) */
+const root=document.documentElement;
+function aplicarTema(t){root.setAttribute('data-tema',t);document.getElementById('toggleTema').innerHTML=(t==='oscuro'?SOL:LUNA);try{localStorage.setItem('tema',t)}catch(e){}}
+(function(){let t;try{t=localStorage.getItem('tema')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'oscuro':'claro';aplicarTema(t);})();
+document.getElementById('toggleTema').onclick=()=>aplicarTema(root.getAttribute('data-tema')==='oscuro'?'claro':'oscuro');
+
+/* Textos de marca */
+document.getElementById('tituloIntro').innerHTML=MARCA.nombre+'<span class="dot">.</span>';
+document.getElementById('logoNav').innerHTML=MARCA.nombre+'<sup>®</sup>';
+document.getElementById('eyebrow').textContent=MARCA.eyebrow;
+document.getElementById('lede').textContent=MARCA.lede;
+document.getElementById('footMarca').textContent='© '+MARCA.nombre+' · '+new Date().getFullYear();
+document.title=MARCA.nombre+'® — Portafolio';
+
+/* Acciones (contacto) */
+const acc=document.getElementById('acciones');
+if(MARCA.redes.whatsapp){
+  const a=document.createElement('a');a.href=MARCA.redes.whatsapp;a.target='_blank';a.rel='noopener';
+  a.className='btn primario';a.innerHTML=ICONOS.whatsapp+'<span>Hablemos</span>';acc.appendChild(a);
+  document.getElementById('navContacto').href=MARCA.redes.whatsapp;
+}
+['instagram','tiktok','email'].forEach(k=>{if(MARCA.redes[k]){
+  const a=document.createElement('a');a.href=MARCA.redes[k];a.target='_blank';a.rel='noopener';
+  a.className='btn';a.innerHTML=ICONOS[k]+'<span>'+NOMBRES_RED[k]+'</span>';acc.appendChild(a);
+}});
+const disp=document.createElement('span');disp.className='disp';disp.innerHTML='<span class="p"></span> Disponible para proyectos';acc.appendChild(disp);
+
+/* Footer links */
+const fl=document.getElementById('footLinks');
+['whatsapp','instagram','tiktok','email'].forEach(k=>{if(MARCA.redes[k]){
+  const a=document.createElement('a');a.href=MARCA.redes[k];a.target='_blank';a.rel='noopener';a.textContent=NOMBRES_RED[k];fl.appendChild(a);
+}});
+
+/* Filtros */
+let filtroActivo="Todos",textoBusqueda="";
+const fc=document.getElementById('filtros');
+["Todos",...CATEGORIAS].forEach(cat=>{
+  const b=document.createElement('button');b.className='chip'+(cat==="Todos"?' activo':'');b.textContent=cat;
+  b.onclick=()=>{filtroActivo=cat;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('activo'));b.classList.add('activo');render();};
+  fc.appendChild(b);
+});
+document.getElementById('buscar').addEventListener('input',e=>{textoBusqueda=e.target.value.toLowerCase().trim();render();});
+
+/* Render */
+const grid=document.getElementById('grid'),totalEl=document.getElementById('total');
+const avatarMini=MARCA.foto?'<img src="'+MARCA.foto+'" alt="">':MARCA.iniciales;
+function render(){
+  const lista=PROYECTOS.filter(p=>{
+    const okCat=filtroActivo==="Todos"||p.categoria===filtroActivo;
+    const okTxt=!textoBusqueda||((p.titulo+' '+p.descripcion+' '+p.categoria).toLowerCase().includes(textoBusqueda));
+    return okCat&&okTxt;
+  });
+  totalEl.textContent=lista.length+(lista.length===1?' proyecto':' proyectos');
+  if(lista.length===0){
+    grid.innerHTML='<div class="vacio"><div class="big">🗂️</div>'+
+      (PROYECTOS.length===0?'Aún no hay trabajos publicados.<br>Pronto iré subiendo lo que voy creando.':'No encontré nada con eso.')+'</div>';
+    return;
+  }
+  grid.innerHTML="";
+  lista.forEach((p,i)=>{
+    const idx=String(i+1).padStart(2,'0');
+    const media=p.imagen?'<img src="'+p.imagen+'" alt="'+p.titulo+'">':'<div class="card-ph">'+(p.emoji||'✨')+'</div>';
+    const card=document.createElement('article');card.className='card';card.style.animationDelay=(i*0.06)+'s';
+    const mediaTag=(p.tipo==='link'&&p.url)
+      ? '<a class="card-media" href="'+p.url+'" target="_blank" rel="noopener">'
+      : (p.tipo==='imagen'&&p.imagen)
+        ? '<a class="card-media" href="javascript:void(0)" onclick="abrirLightbox(\''+p.imagen.replace(/'/g,"\\'")+'\')">'
+        : '<div class="card-media">';
+    const mediaClose=(mediaTag.startsWith('<a'))?'</a>':'</div>';
+    const hint=(p.boton&&((p.tipo==='link'&&p.url)||(p.tipo==='imagen'&&p.imagen)))
+      ? '<div class="card-hint"><span>'+p.boton+' ↗</span></div>':'';
+    card.innerHTML=
+      mediaTag+media+
+        '<span class="card-index">'+idx+'</span>'+
+        '<span class="card-cat">'+p.categoria+'</span>'+hint+
+      mediaClose+
+      '<div class="card-info">'+
+        '<div class="card-author"><span class="mini-av">'+avatarMini+'</span> '+MARCA.nombre+'</div>'+
+        '<h3>'+p.titulo+'</h3>'+
+        '<p>'+(p.descripcion||'')+'</p>'+
+        '<div class="card-foot"><span>'+p.categoria+'</span>'+(p.anio?'<span class="sep">/</span><span>'+p.anio+'</span>':'')+'</div>'+
+      '</div>';
+    grid.appendChild(card);
+  });
+}
+function abrirLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('abierto');}
+function cerrarLightbox(){document.getElementById('lightbox').classList.remove('abierto');}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')cerrarLightbox();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarLightbox();});
+render();
+</script>
+</body>
+</html>
